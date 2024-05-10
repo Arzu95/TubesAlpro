@@ -1,52 +1,22 @@
 package main
 
 import (
+	"TubesAlpro-3/function"
 	"fmt"
-	"sort"
 )
 
 // Struct untuk merepresentasikan data pasien
 type Patient struct {
-	Name            string
-	Age             int
-	Origin          string
-	DateOfBirth     string
-	MedicalHistory  string
-	Priority        int
+	name, umur, asal, gologan_riwayat_penyakit  string
+	tanggalLahir int
+	
 }
 
 // Slice untuk menyimpan daftar pasien
 var patients []Patient
 
 // Fungsi untuk menambahkan pasien ke dalam antrian
-func AddPatient(name string, age int, origin string, dob string, medicalHistory string) {
-	patient := Patient{
-		Name:           name,
-		Age:            age,
-		Origin:         origin,
-		DateOfBirth:    dob,
-		MedicalHistory: medicalHistory,
-		Priority:       0,
-	}
 
-	// Menetapkan prioritas berdasarkan riwayat penyakit
-	switch medicalHistory {
-	case "ringan":
-		patient.Priority = 2
-	case "sedang":
-		patient.Priority = 1
-	case "berat":
-		patient.Priority = 0
-	}
-
-	// Menambahkan pasien ke dalam slice
-	patients = append(patients, patient)
-
-	// Mengurutkan antrian berdasarkan prioritas
-	sort.Slice(patients, func(i, j int) bool {
-		return patients[i].Priority < patients[j].Priority
-	})
-}
 
 // Fungsi untuk mencari data pasien berdasarkan nama
 func FindPatientByName(name string) *Patient {
@@ -100,9 +70,8 @@ func DisplayQueue() {
 
 func main() {
 	// Menambahkan beberapa contoh pasien ke dalam antrian
-	AddPatient("John Doe", 35, "Jakarta", "1989-05-20", "sedang")
-	AddPatient("Jane Smith", 40, "Surabaya", "1984-10-12", "ringan")
-	AddPatient("Michael Johnson", 50, "Bandung", "1974-08-30", "berat")
+	var pasien Patient
+	function.CreatData(pasien)
 
 	// Menampilkan antrian pasien
 	DisplayQueue()
